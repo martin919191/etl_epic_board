@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fog.css') }}"> {# Link to the new fog CSS #}
+    <title>Epic Board</title>
+</head>
+
+<body>
+    <div class="left-pane">
+        <div class="board">
+            {# Canvas element for the fog particles #}
+            <div class="level-indicator-column">
+                {% for j in range(10) %} {# Loop for 10 levels #}
+                <div class="cell">
+                    {{ 10 - j }} {# Display 10 down to 1 #}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="player-columns-container">
+                {% if players %}
+                {% for player in players %}
+                <div class="column"> {# This is a player column #}
+                    {% for i in range(10) %} {# 10 cells per player column #}
+                    <div class="cell">
+                        {% if i == 9 - player.level %} {# Player level 9 is top (index 0), level 0 is bottom (index 9)
+                        #}
+                        <div class="player-info">
+                            <img src="{{ player.profilePicture }}" alt="{{ player.name }}'s profile picture"
+                                class="profile-pic">
+                            <span>{{ player.name }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <canvas id="fog-canvas"></canvas>
+    </div>
+    {# SVG element for the fog particles - placed at the end of body for stacking #}
+    <!--svg id="fog-svg" width="100%" height="100%">
+        <defs>
+            <filter id="fogBlur">
+                {# Adjust stdDeviation for more or less blur #}
+                <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+            </filter>
+        </defs>
+    </svg-->
+    <script src="{{ url_for('static', filename='js/fog.js') }}"></script> {# Link to the new fog JS #}
+</body>
+
+</html>

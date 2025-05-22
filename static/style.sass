@@ -1,0 +1,81 @@
+*
+    // Consider if `position: relative` is needed globally. It can sometimes have unintended side effects.
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    position: relative
+
+html, body
+    width: 100%
+    height: 100%
+    font-family: 'Roboto', sans-serif // Set Roboto as the default font
+    overflow: hidden
+    background-color: #222 // This is the base background color
+
+.left-pane
+    // Define a variable for corner radius for easy adjustment
+    $corner-radius: 10px
+    width: 100%
+    height: 100%
+    padding: 10px
+    .board
+        width: 100%
+        height: 100%
+        display: flex // Lays out level-indicator and player-columns-container side-by-side
+
+        // Base styling for ALL cells (both level-indicator and player columns)
+        .cell
+            flex: 1 // Takes up vertical space within its column
+            border: 1px solid #222 // Darkened border for better visibility on colors
+            display: flex 
+            align-items: center 
+            justify-content: center 
+            color: white // Default text color
+            font-weight: bold // Default font weight
+
+        .level-indicator-column
+            flex: 0 0 40px // Fixed width, does not grow or shrink
+            display: flex
+            flex-direction: column
+            .cell // Specific styles for cells within the level indicator
+                background-color: #606060 // Fixed, subtle background color
+                font-size: 0.85em // Slightly smaller font for numbers
+                font-weight: normal // Numbers not bold
+                &:first-child // Top cell of the level indicator column
+                    border-top-left-radius: $corner-radius
+                &:last-child // Bottom cell of the level indicator column
+                    border-bottom-left-radius: $corner-radius
+
+        .player-columns-container
+            flex: 1 // Takes up remaining horizontal space
+            display: flex
+            height: 100% // Ensure it fills the board height
+
+            .column // These are the individual player columns
+                flex: 1 // Distribute space equally among player columns
+                display: flex
+                flex-direction: column
+                .cell // Specific styles for cells within player columns (gradient)
+                    @for $i from 1 through 10
+                        &:nth-child(#{$i}) // Targets cell based on its position in its parent column
+                            // $i=1 (top) should be green ($hue=120), $i=10 (bottom) should be red ($hue=0)
+                            $progress: calc((10 - $i) / 9) 
+                            $hue: $progress * 120 // Hue from 0 (red) to 120 (green)
+                            background-color: hsl($hue, 45%, 60%) // Darker Pastel: Saturation 45%, Lightness 60%
+                    .player-info
+                        display: flex
+                        align-items: center
+                        gap: 8px // Space between picture and name
+                        text-transform: uppercase
+                        .profile-pic
+                            width: 32px // Increased size
+                            height: 32px // Increased size
+                            border-radius: 4px // Rounded corners for a square look
+
+                // Rounded corners for the player columns area
+                // Left rounded corners are now on the level-indicator-column
+                &:last-child // Last player column
+                    > .cell:first-child // Top cell
+                        border-top-right-radius: $corner-radius
+                    > .cell:last-child // Bottom cell
+                        border-bottom-right-radius: $corner-radius

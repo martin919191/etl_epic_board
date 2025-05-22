@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+  background-color: #222;
+}
+
+.left-pane {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+.left-pane .board {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.left-pane .board .cell {
+  flex: 1;
+  border: 1px solid #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+.left-pane .board .level-indicator-column {
+  flex: 0 0 40px;
+  display: flex;
+  flex-direction: column;
+}
+.left-pane .board .level-indicator-column .cell {
+  background-color: #606060;
+  font-size: 0.85em;
+  font-weight: normal;
+}
+.left-pane .board .level-indicator-column .cell:first-child {
+  border-top-left-radius: 10px;
+}
+.left-pane .board .level-indicator-column .cell:last-child {
+  border-bottom-left-radius: 10px;
+}
+.left-pane .board .player-columns-container {
+  flex: 1;
+  display: flex;
+  height: 100%;
+}
+.left-pane .board .player-columns-container .column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.left-pane .board .player-columns-container .column .cell:nth-child(1) {
+  background-color: hsl(120, 45%, 60%);
+}
+.left-pane .board .player-columns-container .column .cell:nth-child(2) {
+  background-color: hsl(106.6666666667, 45%, 60%);
+}
+.left-pane .board .player-columns-container .column .cell:nth-child(3) {
+  background-color: hsl(93.3333333333, 45%, 60%);
+}
+.left-pane .board .player-columns-container .column .cell:nth-child(4) {
+  background-color: hsl(80, 45%, 60%);
+}
+.left-pane .board .player-columns-container .column .cell:nth-child(5) {
+  background-color: hsl(66.6666666667, 45%, 60%);
+}
+.left-pane .board .player-columns-container .column .cell:nth-child(6) {
+  background-color: hsl(53.3333333333, 45%, 60%);
+}
+.left-pane .board .player-columns-container .column .cell:nth-child(7) {
+  background-color: hsl(40, 45%, 60%);
+}
+.left-pane .board .player-columns-container .column .cell:nth-child(8) {
+  background-color: hsl(26.6666666667, 45%, 60%);
+}
+.left-pane .board .player-columns-container .column .cell:nth-child(9) {
+  background-color: hsl(13.3333333333, 45%, 60%);
+}
+.left-pane .board .player-columns-container .column .cell:nth-child(10) {
+  background-color: hsl(0, 45%, 60%);
+}
+.left-pane .board .player-columns-container .column .cell .player-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+.left-pane .board .player-columns-container .column .cell .player-info .profile-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+}
+.left-pane .board .player-columns-container .column:last-child > .cell:first-child {
+  border-top-right-radius: 10px;
+}
+.left-pane .board .player-columns-container .column:last-child > .cell:last-child {
+  border-bottom-right-radius: 10px;
+}/*# sourceMappingURL=style.css.map */
